@@ -1,17 +1,30 @@
-import { Image, Text, TouchableOpacity } from "react-native";
-
-import styles from "./screenheader.style";
+import { Image, TouchableOpacity } from "react-native";
 
 const ScreenHeaderBtn = ({ iconUrl, dimension, handlePress }) => {
+  const dimensionValue = dimension.endsWith("%")
+    ? (parseFloat(dimension) / 100) * 40
+    : dimension;
+
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handlePress}>
+    <TouchableOpacity
+      className="justify-center items-center"
+      style={{
+        width: dimensionValue,
+        height: dimensionValue,
+        backgroundColor: "transparent",
+        borderRadius: 40,
+      }}
+      onPress={handlePress}
+    >
       <Image
         source={iconUrl}
         resizeMode="cover"
-        style={styles.btnImg(dimension)}
+        style={{
+          width: dimensionValue,
+          height: dimensionValue,
+          borderRadius: 40, 
+        }}
       />
-
-      <Text className="text-blue-400">ASD</Text>
     </TouchableOpacity>
   );
 };
